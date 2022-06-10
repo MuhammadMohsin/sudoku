@@ -1,4 +1,6 @@
 .sudoku-container {
+  color: white;
+
     .sudoku-grid {
         width: 452px;
         margin: 0 auto;
@@ -50,7 +52,7 @@
             border-right: 3px solid #444;
         }
         .solve {
-            margin-top: 20px;
+            margin: 10px 0;
         }
     }
 

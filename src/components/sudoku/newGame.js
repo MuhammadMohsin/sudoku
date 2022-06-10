@@ -12,7 +12,7 @@ function NewGame({ generateGame }) {
     return (
         <div className="new-game-container">
 
-            <FormControl sx={{ m: 1, minWidth: 150 }} size="small">
+            <FormControl sx={{ m: 1, minWidth: 150 }} size="small" style={{color: 'white'}}>
                 <InputLabel id="diffLev">Difficulty Level</InputLabel>
                 <Select
                     labelId="diffLev"

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import SudokuGrid from './grid';
 import NewGame from './newGame';
+import { getBoard, solveBoard } from '../../services/api'
 import './styles.scss';
 
 function Sudoku() {
@@ -12,23 +13,17 @@ function Sudoku() {
     }, [])
 
     const getSudokuData = async (level) => {
-        const _res = await fetch(`https://sugoku.herokuapp.com/board?difficulty=${level}`);
-        const _data = await _res.json()
-        console.log(_data?.board);
-        setBoard(_data?.board);
+        const {board} = await getBoard(level)
+        setBoard(board);
     }
 
-    const solveHandler = async (updatedBoard) => {
-        const _res = await fetch("https://sugoku.herokuapp.com/solve", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatedBoard)
-        });
-        const _data = await _res.json()
-        console.log(_data?.board);
+    const solveHandler = async (board) => {
+        solveBoard(board)
+    }
+
+    const clearHandler = () => {
+        const emptyArray = new Array(9).fill('').map(i => i = new Array(9).fill(''));
+        setBoard(emptyArray)
     }
 
     const generateGame = (level) => {
@@ -39,7 +34,8 @@ function Sudoku() {
             <NewGame generateGame={generateGame} />
 
             {board && board.length ?
-                <SudokuGrid board={board} solveHandler={solveHandler} /> :
+                <SudokuGrid board={board}
+                    clearHandler={clearHandler} solveHandler={solveHandler} /> :
                 <label>Loading...</label>
             }
         </div>
