@@ -8,15 +8,15 @@ function SudokuGrid({ board, solveHandler, clearHandler, validateHandler }) {
     const [boardState, setBoardState] = useState(emptyArray);
 
     useEffect(() => {
-        console.log("board", board)
         setBoardState(board)
     }, board)
 
     const handleChange = (val, row, col) => {
         setBoardState((prev) => {
-            prev[row][col] = +val;
-            return prev;
-        })
+            let _val = JSON.parse(JSON.stringify(prev))
+            _val[row][col] = +val;
+            return _val;
+        });
     }
     const clearAll = () => {
         setBoardState(emptyArray);
@@ -28,7 +28,7 @@ function SudokuGrid({ board, solveHandler, clearHandler, validateHandler }) {
             {boardState?.map((rowData, rInd) => {
                 return rowData?.map((val, cInd) =>
                     <input type="number"
-                        defaultValue={(val === 0 ? '' : val)}
+                        value={(val === 0 ? '' : val)}
                         className={`cell row${rInd} col${cInd}`}
                         onChange={(ev) => handleChange(ev.target.value, rInd, cInd)}
                         key={cInd} />

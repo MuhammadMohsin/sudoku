@@ -4,6 +4,10 @@
     align-items: center;
     flex-direction: column;
 
+    .heading {
+        margin-top: 20px;    
+    }
+
     .sudoku-grid {
         width: 452px;
         margin: 0 auto;
@@ -23,34 +27,34 @@
             height: 50px;
             font-size: 30px;
             text-align: center;
-
-            border-collapse: collapse;
+            background: rgb(129,134,131);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgb(173 173 173 / 85%) 100%);
             box-sizing: border-box;
-            border: 1px solid #444;
+            border: 1px solid #5f6976;
         }
 
         .row0 {
-            border-top: 3px solid #444;
+            border-top: 3px solid #5f6976;
         }
 
         .row2,.row5 {
-            border-bottom: 2px solid #444;
+            border-bottom: 2px solid #5f6976;
         }
 
         .row8 {
-            border-bottom: 3px solid #444;
+            border-bottom: 3px solid #5f6976;
         }
 
         .col0 {
-            border-left: 3px solid #444;
+            border-left: 3px solid #5f6976;
         }
 
         .col2,.col5 {
-            border-right: 2px solid #444;
+            border-right: 2px solid #5f6976;
         }
 
         .col8 {
-            border-right: 3px solid #444;
+            border-right: 3px solid #5f6976;
         }
 
         .solve {

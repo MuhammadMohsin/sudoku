@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
+import Snackbar from '@mui/material/Snackbar';
 import SudokuGrid from './grid';
 import NewGame from './newGame';
 import { getBoard, solveBoard, validateBoard } from '../../services/api'
 import './styles.scss';
+import Header from '../../assets/images/heading.png'
 
 function Sudoku() {
 
@@ -14,8 +15,8 @@ function Sudoku() {
         getSudokuData('easy');
     }, [])
 
-    const handleAlert = (isOpen = 'false', message = '') => {
-        setSnackbarAlert((prev) => [{ open: isOpen, message }])
+    const handleAlert = (isOpen = false, message = '') => {
+        setSnackbarAlert({ open: isOpen, message });
     }
 
     const getSudokuData = async (level) => {
@@ -39,12 +40,13 @@ function Sudoku() {
 
     const validateHandler = async (board) => {
         const { status } = await validateBoard(board);
-        console.log(status);
         handleAlert(true, status);
     }
 
     return (
         <div className="sudoku-container">
+            <img src={Header} className='heading' alt="sudoku"/>
+
             <NewGame generateGame={generateGame} />
 
             {board && board.length ?
@@ -53,13 +55,13 @@ function Sudoku() {
                 <label>Loading...</label>
             }
 
-            {/* <Snackbar
+            <Snackbar
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                open={snackbarAlert}
-                autoHideDuration={3000}
-                TransitionProps={{ onExited: handleAlert() }}
-                message={snackbarAlert.message || ""}
-            /> */}
+                open={snackbarAlert.open}
+                autoHideDuration={4000}
+                onClose={() => handleAlert()}
+                message={`STATUS: ${snackbarAlert.message || ""}`}
+            />
         </div>
     );
 }
