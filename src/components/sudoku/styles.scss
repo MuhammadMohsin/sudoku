@@ -1,5 +1,8 @@
 .sudoku-container {
-  color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
     .sudoku-grid {
         width: 452px;
@@ -30,8 +33,7 @@
             border-top: 3px solid #444;
         }
 
-        .row2,
-        .row5 {
+        .row2,.row5 {
             border-bottom: 2px solid #444;
         }
 
@@ -43,22 +45,23 @@
             border-left: 3px solid #444;
         }
 
-        .col2,
-        .col5 {
+        .col2,.col5 {
             border-right: 2px solid #444;
         }
 
         .col8 {
             border-right: 3px solid #444;
         }
+
         .solve {
             margin: 10px 0;
         }
     }
 
     .new-game-container {
-        display: flex;
-        justify-content: center;
+        min-width: 270px;
+        justify-content: space-between;
+        display: inherit;
         align-items: center;
         height: 85px;
     }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 
-function SudokuGrid({ board, solveHandler, clearHandler }) {
+function SudokuGrid({ board, solveHandler, clearHandler, validateHandler }) {
 
     const emptyArray = new Array(9).fill(0).map(i => i = new Array(9).fill(0));
 
@@ -36,11 +36,15 @@ function SudokuGrid({ board, solveHandler, clearHandler }) {
             })}
 
             <Button variant="contained" fullWidth className="solve"
-                onClick={() => { solveHandler(boardState) }}>Solve
+                onClick={() => { validateHandler(boardState) }}>Validate
             </Button>
 
             <Button variant="contained" fullWidth className="solve"
                 color="error" onClick={() => { clearAll() }}>Clear
+            </Button>
+
+            <Button variant="contained" fullWidth className="solve"
+                onClick={() => { solveHandler(boardState) }}>Solve
             </Button>
         </div>
     );

@@ -26,3 +26,21 @@ export const solveBoard = async (board) => {
         return [];
     }
 }
+
+export const validateBoard = async (board) => {
+    try {
+        const _res = await fetch("https://sugoku.herokuapp.com/validate", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(board)
+        });
+        return await _res.json();
+    }
+    catch (err) {
+        console.log(err);
+        return [];
+    }
+}
