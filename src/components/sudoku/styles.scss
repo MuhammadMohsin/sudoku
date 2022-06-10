@@ -1,6 +1,6 @@
 .sudoku-container {
     .sudoku-grid {
-        width: 475px;
+        width: 452px;
         margin: 0 auto;
 
         input.cell::-webkit-outer-spin-button,
@@ -49,5 +49,15 @@
         .col8 {
             border-right: 3px solid #444;
         }
+        .solve {
+            margin-top: 20px;
+        }
+    }
+
+    .new-game-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 85px;
     }
 }

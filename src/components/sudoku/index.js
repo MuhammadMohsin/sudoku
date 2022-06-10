@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 import SudokuGrid from './grid';
+import NewGame from './newGame';
 import './styles.scss';
 
 function Sudoku() {
 
-    const [diffLevel, setDiffLevel] = useState("easy");
     const [board, setBoard] = useState([]);
 
     useEffect(() => {
-        getSudokuData(diffLevel);
-    }, [diffLevel])
+        getSudokuData('easy');
+    }, [])
 
     const getSudokuData = async (level) => {
-        const _res = await fetch(`https://sugoku.herokuapp.com/board?difficulty=${diffLevel}`);
+        const _res = await fetch(`https://sugoku.herokuapp.com/board?difficulty=${level}`);
         const _data = await _res.json()
         console.log(_data?.board);
         setBoard(_data?.board);
@@ -31,17 +31,12 @@ function Sudoku() {
         console.log(_data?.board);
     }
 
+    const generateGame = (level) => {
+        getSudokuData(level);
+    }
     return (
         <div className="sudoku-container">
-
-            <label>Difficulty Level
-                <select onChange={(e) => { setDiffLevel(e.target.value) }}>
-                    <option value={'easy'}>Easy</option>
-                    <option value={'medium'}>Medium</option>
-                    <option value={'hard'}>Hard</option>
-                    <option value={'random'}>Random</option>
-                </select>
-            </label>
+            <NewGame generateGame={generateGame} />
 
             {board && board.length ?
                 <SudokuGrid board={board} solveHandler={solveHandler} /> :

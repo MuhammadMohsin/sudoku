@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Button from '@mui/material/Button';
 
 function SudokuGrid({ board, solveHandler }) {
 
@@ -24,7 +25,10 @@ function SudokuGrid({ board, solveHandler }) {
                 )
             })}
 
-            <button className="solve" onClick={() => solveHandler(boardState)}>Solve</button>
+            <Button variant="outlined" fullWidth className="solve"
+                onClick={() => { solveHandler(boardState) }}>Solve
+            </Button>
+
         </div>
     );
 }
