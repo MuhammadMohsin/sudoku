@@ -12,11 +12,13 @@ function SudokuGrid({ board, solveHandler, clearHandler, validateHandler }) {
     }, board)
 
     const handleChange = (val, row, col) => {
-        setBoardState((prev) => {
-            let _val = JSON.parse(JSON.stringify(prev))
-            _val[row][col] = +val;
-            return _val;
-        });
+        if (val < 10 && val > 0 || val == '') {
+            setBoardState((prev) => {
+                let _val = JSON.parse(JSON.stringify(prev))
+                _val[row][col] = +val;
+                return _val;
+            });
+        }
     }
     const clearAll = () => {
         setBoardState(emptyArray);

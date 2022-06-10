@@ -1,7 +1,7 @@
 # Sudoku App
 
 ## Live App Link
-You can check deployed app on this link "https://mohsin-sudoku.surge.sh"
+You can check deployed app on this link https://mohsin-sudoku.surge.sh
 
 ## Available Scripts
 
